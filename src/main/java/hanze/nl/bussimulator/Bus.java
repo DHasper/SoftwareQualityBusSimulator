@@ -69,23 +69,35 @@ public class Bus{
 		}
 		return eindpuntBereikt;
 	}
+
+	public Bericht addInfoToMessage(Bericht bericht, int nu) {
+		// If we are currently at a stop, add an ETA of 0 seconds to the message.
+		if (bijHalte)
+			bericht.ETAs.add(
+				new ETA(lijn.getHalte(halteNummer).name(), lijn.getRichting(halteNummer), 0));
+
+		Positie eerstVolgende = lijn.getHalte(halteNummer + richting).getPositie();
+		int tijdNaarHalte = totVolgendeHalte + nu;
+
+		int i = 0;
+		for (i = halteNummer + richting; i < lijn.getLengte() && i >= 0; i = i + richting){
+			tijdNaarHalte += lijn.getHalte(i).afstand(eerstVolgende);
+			bericht.ETAs.add(new ETA(lijn.getHalte(i).name(), lijn.getRichting(i), tijdNaarHalte));
+			eerstVolgende = lijn.getHalte(i).getPositie();
+		}
+
+		bericht.eindpunt = lijn.getHalte(i - richting).name();
+
+		return bericht;
+	}
 	
 	public void sendETAs(int nu){
-		int i=0;
-		Bericht bericht = new Bericht(lijn.name(),bedrijf.name(),busID,nu);
-		if (bijHalte) {
-			ETA eta = new ETA(lijn.getHalte(halteNummer).name(),lijn.getRichting(halteNummer),0);
-			bericht.ETAs.add(eta);
-		}
-		Positie eerstVolgende=lijn.getHalte(halteNummer+richting).getPositie();
-		int tijdNaarHalte=totVolgendeHalte+nu;
-		for (i = halteNummer+richting ; !(i>=lijn.getLengte()) && !(i < 0); i=i+richting ){
-			tijdNaarHalte+= lijn.getHalte(i).afstand(eerstVolgende);
-			ETA eta = new ETA(lijn.getHalte(i).name(), lijn.getRichting(i),tijdNaarHalte);
-			bericht.ETAs.add(eta);
-			eerstVolgende=lijn.getHalte(i).getPositie();
-		}
-		bericht.eindpunt=lijn.getHalte(i-richting).name();
+		// Create new message.
+		Bericht bericht = new Bericht(lijn.name(), bedrijf.name(), busID, nu);
+
+		// Decorate message with information.
+		bericht = addInfoToMessage(bericht, nu);
+
 		sendBericht(bericht);
 	}
 	
