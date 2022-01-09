@@ -57,6 +57,7 @@ public class InfoBord {
 		return infobord;
 	}
 
+
 	public void setRegels(){
 		String[] infoTekst={"--1--","--2--","--3--","--4--","leeg"};
 		int[] aankomsttijden=new int[5];

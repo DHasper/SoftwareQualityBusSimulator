@@ -2,17 +2,15 @@ package hanze.nl.bussimulator;
 
 import java.util.ArrayList;
 
-import hanze.nl.bussimulator.buslijn.ETA;
-
 public class Bericht {
 	String lijnNaam;
-	public String eindpunt;
+	String eindpunt;
 	String bedrijf;
 	String busID;
 	int tijd;
-	public ArrayList<ETA> ETAs;
+	ArrayList<ETA> ETAs;
 	
-	public Bericht(String lijnNaam, String bedrijf, String busID, int tijd){
+	Bericht(String lijnNaam, String bedrijf, String busID, int tijd){
 		this.lijnNaam=lijnNaam;
 		this.bedrijf=bedrijf;
 		this.eindpunt="";

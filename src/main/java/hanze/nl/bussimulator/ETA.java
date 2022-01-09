@@ -1,4 +1,4 @@
-package hanze.nl.bussimulator.buslijn;
+package hanze.nl.bussimulator;
 
 public class ETA {
 	String halteNaam;

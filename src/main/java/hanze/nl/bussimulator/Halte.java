@@ -1,4 +1,4 @@
-package hanze.nl.bussimulator.buslijn;
+package hanze.nl.bussimulator;
 
 public enum Halte {
 	A (new Positie(1,1)),
