@@ -2,6 +2,8 @@ package hanze.nl.bussimulator;
 
 import com.thoughtworks.xstream.XStream;
 import hanze.nl.bussimulator.Halte.Positie;
+import hanze.nl.shared.Bericht;
+import hanze.nl.shared.ETA;
 
 public class Bus{
 
@@ -70,7 +72,7 @@ public class Bus{
 		return eindpuntBereikt;
 	}
 
-	public Bericht addInfoToMessage(Bericht bericht, int nu) {
+	public Bericht addPropertiesToMessage(Bericht bericht, int nu) {
 		// If we are currently at a stop, add an ETA of 0 seconds to the message.
 		if (bijHalte)
 			bericht.ETAs.add(
@@ -96,7 +98,7 @@ public class Bus{
 		Bericht bericht = new Bericht(lijn.name(), bedrijf.name(), busID, nu);
 
 		// Decorate message with information.
-		bericht = addInfoToMessage(bericht, nu);
+		bericht = addPropertiesToMessage(bericht, nu);
 
 		sendBericht(bericht);
 	}
