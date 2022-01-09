@@ -1,4 +1,4 @@
-package hanze.nl.bussimulator;
+package hanze.nl.bussimulator.buslijn;
 
 public enum Lijnen {
 	

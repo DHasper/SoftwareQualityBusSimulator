@@ -4,6 +4,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import hanze.nl.bussimulator.buslijn.Bedrijven;
+import hanze.nl.bussimulator.buslijn.Bus;
+import hanze.nl.bussimulator.buslijn.Lijnen;
 import hanze.nl.tijdtools.TijdFuncties;
 
 public class Runner {

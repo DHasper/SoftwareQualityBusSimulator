@@ -1,7 +1,10 @@
-package hanze.nl.bussimulator;
+package hanze.nl.bussimulator.buslijn;
 
 import com.thoughtworks.xstream.XStream;
-import hanze.nl.bussimulator.Halte.Positie;
+
+import hanze.nl.bussimulator.Bericht;
+import hanze.nl.bussimulator.Producer;
+import hanze.nl.bussimulator.buslijn.Halte.Positie;
 
 public class Bus{
 
@@ -13,7 +16,7 @@ public class Bus{
 	private boolean bijHalte;
 	private String busID;
 	
-	Bus(Lijnen lijn, Bedrijven bedrijf, int richting){
+	public Bus(Lijnen lijn, Bedrijven bedrijf, int richting){
 		this.lijn=lijn;
 		this.bedrijf=bedrijf;
 		this.richting=richting;
